@@ -47,14 +47,35 @@ ggplot(data = se) +
   theme(legend.position = "none")
   
 ##example with box plot
-> ggplot(se, aes(x = park_name, y = visitors)) + 
-+     geom_boxplot() +
-+     theme(axis.text.x = element_text(angle = 45, hjust = 1))
+ggplot(se, aes(x = park_name, y = visitors)) + 
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ## example line graph 
 ggplot(se, aes(x = year, y = visitors, color = park_name)) +
    geom_line()
    
+## example multiple in one graph 
+ggplot(data = acadia, aes(x = year, y = visitors)) + 
+  geom_point(color="purple") +
+  geom_line(color="blue") +
+  geom_smooth(color = "red") +
+  labs(title = "Acadia National Park Visitation",
+       y = "Visitation",
+       x = "Year") +
+  theme_bw()
+##bar graph 
+ggplot(data = visit_16, aes(x = state)) + 
+  geom_bar()
+  
+##bar graph with different fills 
+ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) + 
+  geom_bar(stat = "identity")
 
-
+## bar graph but separated out 
+ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) + 
+  geom_bar(stat = "identity", position = "dodge")
+  
+  
+  
     
